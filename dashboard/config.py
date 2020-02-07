@@ -1,3 +1,5 @@
+import os
+
 # Running on Azure? If True will display the "Fork Me On GitHub" banner
 AZURE = False
 
@@ -9,8 +11,11 @@ GOOGLE_ANALYTICS = None
 
 # Connection string to SSISDB
 CONNECTION_STRING = {
-                    "main": "DRIVER={ODBC Driver 17 for SQL Server};SERVER=localhost;DATABASE=SSISDB;UID=;PWD=",
-                    }
+    "main": os.getenv(
+        "CONNECTION_STRING",
+        "DRIVER={ODBC Driver 17 for SQL Server};SERVER=localhost;DATABASE=SSISDB;UID=;PWD="
+    ),
+}
 
 # Set to 'NOW' to show current data or any valid date to show data for a fixed date only
 AS_OF_DATE = 'NOW'
